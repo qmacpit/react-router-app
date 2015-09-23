@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 var DataProvider =  require('./dataProvider');
 
 export default React.createClass({
+  prefix: "/replace/",
   getInitialState: function(){
     console.log("get initial state")
     return {
@@ -43,13 +44,13 @@ export default React.createClass({
                   : 0;
                   
                   if (index - 1 >= 0 ) {
-                    var to = "/" + (index - 1).toString();
+                    var to = this.prefix + (index - 1).toString();
                     console.log("prev nav: " + to)
                     prev = <Link to={to}>prev</Link>          
                   }
                   
                   if (index + 1 < DataProvider.data.length) {
-                    var to = "/" + (index + 1).toString();
+                    var to = this.prefix + (index + 1).toString();
                     console.log("next nav: " + to)
                     next = <Link to={to}>next</Link>
                   }                                  

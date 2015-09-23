@@ -5,43 +5,31 @@ import Page from "./page";
 
 var DataProvider =  require('./dataProvider');
 
-const User = React.createClass({
+var App = React.createClass({  
   render() {
-    var { query } = this.props.location;
-    var age = query && query.showAge ? '33' : '';
-    var { userID } = this.props.params;
     return (
-      <div className="User">
-        <h1>User id: {userID}</h1>
-        {age}
+      <div>
+       <Link to="/replace/0">replace</Link>             
       </div>
     );
   }
 });
 
-var App = React.createClass({
-  componentDidMount() {
-    this.setState({
-      // route components are rendered with useful information, like URL params
-      pages: data
-    })
-  },  
+var ReplaceApp = React.createClass({  
   render() {
     return (
       <div>
-        <ul>
-          <li><Link to="/user/bob">Bob</Link></li>
-          <li><Link to="/user/bob" query={{showAge: true}}>Bob With Query Params</Link></li>
-          <li><Link to="/user/sally">Sally</Link></li>
-        </ul>        
-      </div>
+        {this.props.children}
+        </div>
     );
   }
 });
 
 React.render((
     <Router>    
-        <Route path="/:index" component={Page}/>  
-        <Redirect from="/" to="/0" />              
+        <Route path="/" component={App}/>         
+         <Route path="replace" component={ReplaceApp}>     
+            <Route path=":index" component={Page}/>     
+          </Route>        
     </Router>
 ), document.body);
