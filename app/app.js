@@ -5,31 +5,60 @@ import Page from "./page";
 
 var DataProvider =  require('./dataProvider');
 
-var App = React.createClass({  
+class App extends React.Component {
+  render () {    
+    const { children } = this.props
+    return (
+      <div>
+        <div className="Main">
+          {children ? children.main : <Categories />}
+        </div>
+        <div className="Sidebar">
+          {children ? children.sidebar : <AdminMenu />}
+        </div>
+      </div>
+    )
+  }
+}
+
+
+var AdminMenu = React.createClass({  
   render() {
     return (
       <div>
-       <Link to="/replace/0">replace</Link>             
+        <h3>AdminMenu</h3>
+        <Link to="/categories" >categries</Link>
       </div>
     );
   }
 });
 
-var ReplaceApp = React.createClass({  
+var UserMenu = React.createClass({  
   render() {
     return (
       <div>
+        <h3>UserMenu</h3>      
+      </div>
+    );
+  }
+});
+
+var Categories = React.createClass({  
+  render() {
+    return (
+      <div>
+        <h3>categories</h3>
         {this.props.children}
-        </div>
+      </div>
     );
   }
 });
 
 React.render((
     <Router>    
-        <Route path="/" component={App}/>         
-         <Route path="replace" component={ReplaceApp}>     
-            <Route path=":index" component={Page}/>     
-          </Route>        
+        <Route path="/" component={App}>         
+         <Route path="admin/categories" components={{main: Categories, sidebar:AdminMenu}}/>                         
+         <Route path="categories" components={{main: Categories, sidebar: UserMenu}}/>                         
+        </Route>
     </Router>
 ), document.body);
