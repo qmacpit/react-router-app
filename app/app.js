@@ -115,7 +115,7 @@ React.render((
          <Route path="admin/users/:id/categories" components={{main: Categories, sidebar:UserMenu}}/>                                  
          <Route path="admin/users/:id/items" components={{main: Items, sidebar:UserMenu}}/>                                  
          <Route path="categories" components={{main: Categories, sidebar: UserMenu}}/>                         
-         <Route path="items" components={{main: Items, sidebar: UserMenu}}/>                         
+         <Route path="items" components={{main: Items, sidebar: UserMenu}}/>
         </Route>
     </Router>
 ), document.body);
