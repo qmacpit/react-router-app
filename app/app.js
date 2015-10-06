@@ -1,10 +1,6 @@
 import React from 'react';
 import { Router, Route, Link, Redirect } from 'react-router';
 
-import Page from "./page";
-
-var DataProvider =  require('./dataProvider');
-
 class App extends React.Component {
   render () {    
     const { children } = this.props
